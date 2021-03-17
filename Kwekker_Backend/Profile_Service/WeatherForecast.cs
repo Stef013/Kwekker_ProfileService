@@ -1,6 +1,6 @@
 using System;
 
-namespace Account_Service
+namespace Profile_Service
 {
     public class WeatherForecast
     {
