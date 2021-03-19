@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Account_Service.DataAccess;
+using Account_Service.Models;
+using Account_Service.Repository;
 
 namespace Account_Service.Controllers
 {
@@ -12,34 +15,55 @@ namespace Account_Service.Controllers
     public class AccountController : ControllerBase
     {
         private readonly ILogger<AccountController> _logger;
+        private readonly AccountDbContext _context;
+        private AccountRepository accRepository;
 
-        public AccountController(ILogger<AccountController> logger)
+        public AccountController(AccountDbContext context, ILogger<AccountController> logger)
         {
+            accRepository = new AccountRepository(context);
             _logger = logger;
         }
 
+        
+
         [HttpPost]
-        public bool create(string newAccount)
+        public string create([FromBody]Account account)
         {
-            return true;
+
+            //Account account = JsonConvert.DeserializeObject<Account>(json);
+            if(accRepository.checkEmail(account.email))
+            {
+                return "Email is already in use";
+            }
+            else
+            {
+                if (accRepository.create(account))
+                {
+                    return "Success!";
+                }
+                else
+                {
+                    return "Database error!";
+                }
+            }
         }
 
         [HttpGet]
-        public string get()
+        public string get([FromBody] Account account)
         {
             return "hoppakee";
         }
 
         [HttpPut]
-        public string update(string updatedAccount)
+        public bool update([FromBody] Account account)
         {
-            return "updated";
+            return accRepository.update(account);
         }
 
         [HttpDelete]
-        public bool delete(string updatedAccount)
+        public bool delete([FromBody] Account account)
         {
-            return true;
+            return accRepository.create(account);
         }
 
     }
