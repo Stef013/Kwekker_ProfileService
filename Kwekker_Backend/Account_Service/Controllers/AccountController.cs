@@ -15,7 +15,6 @@ namespace Account_Service.Controllers
     public class AccountController : ControllerBase
     {
         private readonly ILogger<AccountController> _logger;
-        private readonly AccountDbContext _context;
         private AccountRepository accRepository;
 
         public AccountController(AccountDbContext context, ILogger<AccountController> logger)
@@ -24,13 +23,9 @@ namespace Account_Service.Controllers
             _logger = logger;
         }
 
-        
-
         [HttpPost]
         public string create([FromBody]Account account)
         {
-
-            //Account account = JsonConvert.DeserializeObject<Account>(json);
             if(String.IsNullOrEmpty(account.email) || String.IsNullOrEmpty(account.password))
             {
                 return "Email and password cvannot be empty.";
@@ -49,13 +44,13 @@ namespace Account_Service.Controllers
         }
 
         [HttpGet]
-        public string get([FromBody] Account account)
+        public string get()
         {
-            return "hoppakee";
+            return "accountservice";
         }
 
-        [HttpGet]
-        public bool checkEmail([FromBody] string email)
+        [HttpGet("email")]
+        public bool checkEmail(string email)
         {
             return accRepository.checkEmail(email);
         }

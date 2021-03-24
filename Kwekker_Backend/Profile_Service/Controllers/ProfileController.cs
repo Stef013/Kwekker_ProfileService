@@ -15,7 +15,6 @@ namespace Profile_Service.Controllers
     public class ProfileController : ControllerBase
     {
         private readonly ILogger<ProfileController> _logger;
-        private readonly ProfileDbContext _context;
         private ProfileRepository profRepository;
 
         public ProfileController(ProfileDbContext context, ILogger<ProfileController> logger)
@@ -45,20 +44,20 @@ namespace Profile_Service.Controllers
             }
         }
 
-        [HttpGet]
-        public Profile getByAccountID([FromBody] int accountID)
+        [HttpGet("account")]
+        public Profile getByAccountID(int accountID)
         {
             return profRepository.getByAccountID(accountID);
         }
 
-        [HttpGet]
-        public Profile getByProfileName([FromBody] string profileName)
+        [HttpGet("name")]
+        public Profile getByProfileName(string profileName)
         {
             return profRepository.getByProfileName(profileName);
         }
 
-        [HttpGet]
-        public bool checkUserTag([FromBody] string usertag)
+        [HttpGet("userTag")]
+        public bool checkUserTag( string usertag)
         {
             return profRepository.checkUserTag(usertag);
         }

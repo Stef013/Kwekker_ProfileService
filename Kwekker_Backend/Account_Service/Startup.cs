@@ -12,8 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using Microsoft.EntityFrameworkCore;
 
 namespace Account_Service
 {
@@ -29,13 +27,6 @@ namespace Account_Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddControllers();
-            //services.AddDbContext<AccountDbContext>(item => item.UseMySql(Configuration.GetConnectionString("dbconn")));
-
-
-            //services.AddDbContextPool<AccountDbContext>(
-            // options => options.UseMySql(Configuration.GetConnectionString("dbconn")
-            //));
 
             string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<AccountDbContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
