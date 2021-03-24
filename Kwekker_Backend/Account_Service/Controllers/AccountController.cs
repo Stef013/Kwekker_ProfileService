@@ -31,9 +31,9 @@ namespace Account_Service.Controllers
         {
 
             //Account account = JsonConvert.DeserializeObject<Account>(json);
-            if(accRepository.checkEmail(account.email))
+            if(String.IsNullOrEmpty(account.email) || String.IsNullOrEmpty(account.password))
             {
-                return "Email is already in use";
+                return "Email and password cvannot be empty.";
             }
             else
             {
@@ -52,6 +52,12 @@ namespace Account_Service.Controllers
         public string get([FromBody] Account account)
         {
             return "hoppakee";
+        }
+
+        [HttpGet]
+        public bool checkEmail([FromBody] string email)
+        {
+            return accRepository.checkEmail(email);
         }
 
         [HttpPut]

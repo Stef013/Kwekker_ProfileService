@@ -19,6 +19,7 @@ namespace Account_Service.Repository
 
         public bool create(Account account)
         {
+            bool result;
             try
             {
                 using (var context = _context)
@@ -26,15 +27,15 @@ namespace Account_Service.Repository
                     context.Account.Add(account);
                     context.SaveChanges();
                 }
-
+                result = true;
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex);
-                return false;
+                result = false;
             }
             
-            return true;
+            return result;
         }
 
         public Account get(Account account)
@@ -59,23 +60,19 @@ namespace Account_Service.Repository
 
         public bool checkEmail(string email)
         {
-            bool result = false;
+            bool result;
             try
             {
                 using (var context = _context)
                 {
-                    var account = _context.Account
-                        .Single(a => a.email == email);
-
-                    if(account.ID > 0)
-                    {
-                        result = true;
-                    }
+                    result = _context.Account
+                        .Any(a => a.email == email);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+                result = false;
             }
 
             return result;
@@ -83,6 +80,7 @@ namespace Account_Service.Repository
 
         public bool update(Account account)
         {
+            bool result;
             try
             {
                 using (var context = _context)
@@ -93,18 +91,21 @@ namespace Account_Service.Repository
                     acc.password = account.password;
                     context.SaveChanges();
                 }
+                result = true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return false;
+                result = false;
             }
 
-            return true;
+            return result;
         }
 
         public bool delete(Account account)
         {
+            bool result;
+
             try
             {
                 using (var context = _context)
@@ -115,14 +116,15 @@ namespace Account_Service.Repository
                     context.Account.Remove(acc);
                     context.SaveChanges();
                 }
+                result = true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return false;
+                result = false;
             }
 
-            return true;
+            return result;
         }
     }
 }
