@@ -26,7 +26,6 @@ namespace Profile_Service.Controllers
         [HttpPost]
         public string create([FromBody] Profile profile)
         {
-            //Account account = JsonConvert.DeserializeObject<Account>(json);
             if (String.IsNullOrEmpty(profile.profileName) || String.IsNullOrEmpty(profile.userTag) || profile.accountID == 0)
             {
                 return "Certain field are empty.";

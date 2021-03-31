@@ -17,25 +17,26 @@ namespace Account_Service.Repository
             _context = context;
         }
 
-        public bool create(Account account)
+        public int create(Account account)
         {
-            bool result;
+            int accountID;
             try
             {
                 using (var context = _context)
                 {
                     context.Account.Add(account);
                     context.SaveChanges();
+
+                    accountID = account.ID;
                 }
-                result = true;
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex);
-                result = false;
+                accountID = 0;
             }
             
-            return result;
+            return accountID;
         }
 
         public Account get(Account account)

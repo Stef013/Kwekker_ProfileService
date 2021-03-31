@@ -24,23 +24,33 @@ namespace Account_Service.Controllers
         }
 
         [HttpPost]
-        public string create([FromBody]Account account)
+        public ResponseModel create([FromBody]Account account)
         {
+            ResponseModel response = new ResponseModel();
+
             if(String.IsNullOrEmpty(account.email) || String.IsNullOrEmpty(account.password))
             {
-                return "Email and password cvannot be empty.";
+                response.success = false;
+                response.message = "Email and Password cannot be empty";
             }
             else
             {
-                if (accRepository.create(account))
+                int accountID = accRepository.create(account);
+
+                if ( accountID > 0)
                 {
-                    return "Success!";
+                    response.success = true;
+                    response.message = "Success!";
+                    response.accountID = accountID;
                 }
                 else
                 {
-                    return "Database error!";
+                    response.success = false;
+                    response.message = "Database Error!";
                 }
             }
+
+            return response;
         }
 
         [HttpGet]
@@ -64,7 +74,7 @@ namespace Account_Service.Controllers
         [HttpDelete]
         public bool delete([FromBody] Account account)
         {
-            return accRepository.create(account);
+            return accRepository.delete(account);
         }
 
     }

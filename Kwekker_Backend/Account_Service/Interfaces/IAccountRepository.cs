@@ -8,7 +8,7 @@ namespace Account_Service.Interfaces
 {
     interface IAccountRepository
     {
-        public bool create(Account account);
+        public int create(Account account);
         public Account get(Account account);
         public bool checkEmail(string email);
         public bool update(Account account);
