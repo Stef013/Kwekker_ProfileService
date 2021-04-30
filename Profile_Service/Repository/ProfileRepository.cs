@@ -37,7 +37,27 @@ namespace Profile_Service.Repository
             }
 
             return result;
-        }        
+        }
+
+        public int getProfileID(int accountID)
+        {
+            int id = 0;
+            try
+            {
+                using (var context = _context)
+                {
+                    id = _context.Profiles
+                        .Single(p => p.accountID == accountID).ID;
+
+                }
+                return id;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return id;
+            }
+        }
 
         public Profile getByAccountID(int accountID)
         {

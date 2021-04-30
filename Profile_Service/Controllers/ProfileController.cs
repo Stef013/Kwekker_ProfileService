@@ -42,6 +42,12 @@ namespace Profile_Service.Controllers
                 }
             }
         }
+        
+        [HttpGet("profileid")]
+        public int getProfileId(int accountID)
+        {
+            return profRepository.getProfileID(accountID);
+        }
 
         [HttpGet("account")]
         public Profile getByAccountID(int accountID)

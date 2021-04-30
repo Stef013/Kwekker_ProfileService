@@ -9,6 +9,7 @@ namespace Profile_Service.Interfaces
     interface IProfileRepository
     {
         public bool create(Profile profile);
+        public int getProfileID(int accountID);
         public Profile getByAccountID(int accountID);
         public Profile getByProfileName(string profileName);
         public bool checkUserTag(string userTag);
