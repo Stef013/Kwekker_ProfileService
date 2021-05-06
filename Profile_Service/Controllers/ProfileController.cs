@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Profile_Service.Models;
-using Profile_Service.Repository;
+using Profile_Service.Entities;
+using Profile_Service.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Profile_Service.DataAccess;
+using Profile_Service.Models;
 
 namespace Profile_Service.Controllers
 {
@@ -15,11 +16,11 @@ namespace Profile_Service.Controllers
     public class ProfileController : ControllerBase
     {
         private readonly ILogger<ProfileController> _logger;
-        private ProfileRepository profRepository;
+        private ProfileService profileService;
 
         public ProfileController(ProfileDbContext context, ILogger<ProfileController> logger)
         {
-            profRepository = new ProfileRepository(context);
+            profileService = new ProfileService(context);
             _logger = logger;
         }
 
@@ -32,7 +33,7 @@ namespace Profile_Service.Controllers
             }
             else
             {
-                if (profRepository.create(profile))
+                if (profileService.create(profile))
                 {
                     return "Success!";
                 }
@@ -46,37 +47,37 @@ namespace Profile_Service.Controllers
         [HttpGet("profileid")]
         public int getProfileId(int accountID)
         {
-            return profRepository.getProfileID(accountID);
+            return profileService.getProfileID(accountID);
         }
 
         [HttpGet("account")]
-        public Profile getByAccountID(int accountID)
+        public ProfileModel getByAccountID(int accountID)
         {
-            return profRepository.getByAccountID(accountID);
+            return profileService.getByAccountID(accountID);
         }
 
         [HttpGet("name")]
         public Profile getByProfileName(string profileName)
         {
-            return profRepository.getByProfileName(profileName);
+            return profileService.getByProfileName(profileName);
         }
 
         [HttpGet("userTag")]
         public bool checkUserTag( string usertag)
         {
-            return profRepository.checkUserTag(usertag);
+            return profileService.checkUserTag(usertag);
         }
 
         [HttpPut]
         public bool update([FromBody] Profile profile)
         {
-            return profRepository.update(profile);
+            return profileService.update(profile);
         }
 
         [HttpDelete]
         public bool delete([FromBody] Profile profile)
         {
-            return profRepository.create(profile);
+            return profileService.create(profile);
         }
     }
 }

@@ -8,7 +8,7 @@ using Profile_Service.DataAccess;
 namespace Profile_Service.Migrations
 {
     [DbContext(typeof(ProfileDbContext))]
-    [Migration("20210324133427_DBInit")]
+    [Migration("20210506144224_DBInit")]
     partial class DBInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,22 +18,24 @@ namespace Profile_Service.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.4");
 
-            modelBuilder.Entity("ProfileProfile", b =>
+            modelBuilder.Entity("Profile_Service.Entities.Follows", b =>
                 {
-                    b.Property<int>("followersID")
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("followerID")
                         .HasColumnType("int");
 
                     b.Property<int>("followingID")
                         .HasColumnType("int");
 
-                    b.HasKey("followersID", "followingID");
+                    b.HasKey("ID");
 
-                    b.HasIndex("followingID");
-
-                    b.ToTable("ProfileProfile");
+                    b.ToTable("Follows");
                 });
 
-            modelBuilder.Entity("Profile_Service.Models.Profile", b =>
+            modelBuilder.Entity("Profile_Service.Entities.Profile", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -54,21 +56,6 @@ namespace Profile_Service.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Profiles");
-                });
-
-            modelBuilder.Entity("ProfileProfile", b =>
-                {
-                    b.HasOne("Profile_Service.Models.Profile", null)
-                        .WithMany()
-                        .HasForeignKey("followersID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Profile_Service.Models.Profile", null)
-                        .WithMany()
-                        .HasForeignKey("followingID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

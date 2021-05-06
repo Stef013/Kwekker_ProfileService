@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Profile_Service.Models
+namespace Profile_Service.Entities
 {
     public class Profile
     {
@@ -12,7 +12,5 @@ namespace Profile_Service.Models
         public string profileName { get; set; }
         public string userTag { get; set; }
         public string bio { get; set; }
-        public List<Profile> followers { get; set; }
-        public List<Profile> following { get; set; }
     }
 }

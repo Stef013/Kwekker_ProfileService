@@ -65,7 +65,6 @@ C:\Users\StefanV\Documents\School\S6\Kwekker_ProfileService\Profile_Service\bin\
 C:\Users\StefanV\Documents\School\S6\Kwekker_ProfileService\Profile_Service\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\StefanV\Documents\School\S6\Kwekker_ProfileService\Profile_Service\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
 C:\Users\StefanV\Documents\School\S6\Kwekker_ProfileService\Profile_Service\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
-C:\Users\StefanV\Documents\School\S6\Kwekker_ProfileService\Profile_Service\obj\Debug\netcoreapp3.1\Profile_Service.csprojAssemblyReference.cache
 C:\Users\StefanV\Documents\School\S6\Kwekker_ProfileService\Profile_Service\obj\Debug\netcoreapp3.1\Profile_Service.AssemblyInfoInputs.cache
 C:\Users\StefanV\Documents\School\S6\Kwekker_ProfileService\Profile_Service\obj\Debug\netcoreapp3.1\Profile_Service.AssemblyInfo.cs
 C:\Users\StefanV\Documents\School\S6\Kwekker_ProfileService\Profile_Service\obj\Debug\netcoreapp3.1\Profile_Service.csproj.CoreCompileInputs.cache
@@ -78,3 +77,4 @@ C:\Users\StefanV\Documents\School\S6\Kwekker_ProfileService\Profile_Service\obj\
 C:\Users\StefanV\Documents\School\S6\Kwekker_ProfileService\Profile_Service\obj\Debug\netcoreapp3.1\Profile_Service.dll
 C:\Users\StefanV\Documents\School\S6\Kwekker_ProfileService\Profile_Service\obj\Debug\netcoreapp3.1\Profile_Service.pdb
 C:\Users\StefanV\Documents\School\S6\Kwekker_ProfileService\Profile_Service\obj\Debug\netcoreapp3.1\Profile_Service.genruntimeconfig.cache
+C:\Users\StefanV\Documents\School\S6\Kwekker_ProfileService\Profile_Service\obj\Debug\netcoreapp3.1\Profile_Service.csprojAssemblyReference.cache
