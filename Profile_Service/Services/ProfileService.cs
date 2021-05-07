@@ -66,7 +66,7 @@ namespace Profile_Service.Services
             ProfileModel profileModel;
             try
             {
-                
+
                 Profile profile = _context.Profiles
                         .FirstOrDefault(p => p.accountID == accountID);
 
@@ -78,7 +78,7 @@ namespace Profile_Service.Services
                     bio = profile.bio,
                 };
 
-                
+
                 profileModel.followers = getFollowers(profile.ID);
                 profileModel.following = getFollowing(profile.ID);
 
@@ -100,7 +100,7 @@ namespace Profile_Service.Services
 
                 List<int> followerIDs = _context.Follows.Where(f => f.followingID == profileID).Select(f => f.followerID).ToList();
 
-                foreach(int id in followerIDs)
+                foreach (int id in followerIDs)
                 {
                     Profile profile = _context.Profiles.FirstOrDefault(p => p.ID == id);
                     profile.accountID = 0;
@@ -162,6 +162,26 @@ namespace Profile_Service.Services
             }
         }
 
+        public string getProfileName(int profileID)
+        {
+            string profileName;
+            try
+            {
+
+                profileName = _context.Profiles
+                        .FirstOrDefault(p => p.ID == profileID).profileName;
+
+
+                return profileName;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                profileName = "";
+                return profileName;
+            }
+        }
+
         public bool checkUserTag(string userTag)
         {
             bool result;
@@ -192,7 +212,7 @@ namespace Profile_Service.Services
                 {
                     var prof = _context.Profiles
                         .Single(p => p.ID == profile.ID);
-                    
+
                     prof.profileName = profile.profileName;
                     prof.userTag = profile.userTag;
                     prof.bio = profile.bio;
@@ -220,7 +240,7 @@ namespace Profile_Service.Services
                 using (var context = _context)
                 {
                     var prof = _context.Profiles
-                        .Single(p => p.ID == profile.ID && p.accountID == profile.accountID );
+                        .Single(p => p.ID == profile.ID && p.accountID == profile.accountID);
 
                     context.Profiles.Remove(prof);
                     context.SaveChanges();
