@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Profile_Service.Migrations
 {
-    public partial class DBInit : Migration
+    public partial class AzureDBInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +11,7 @@ namespace Profile_Service.Migrations
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     followerID = table.Column<int>(type: "int", nullable: false),
                     followingID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -26,11 +25,11 @@ namespace Profile_Service.Migrations
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     accountID = table.Column<int>(type: "int", nullable: false),
-                    profileName = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
-                    userTag = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
-                    bio = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
+                    profileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    userTag = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    bio = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

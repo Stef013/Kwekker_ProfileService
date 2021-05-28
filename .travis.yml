@@ -1,0 +1,21 @@
+language: csharp
+sudo: required
+mono: none
+dotnet: 3.1
+solution: Profile_Service.sln
+
+before_script: 
+- dotnet restore  
+
+script: 
+- dotnet build ".\Profile_Service" -c Release 
+
+deploy:
+  provider: azure_web_apps
+  username: '%24KwekkerProfileService'
+  password: djgEeKsH36euijYfP0MtMN0vxiEDrskePP29mYFFTWNPm2KCHBvKWQXkMZH7
+  site: KwekkerProfileService
+  verbose: true
+  skip_cleanup: true
+  on:
+      branch: dev

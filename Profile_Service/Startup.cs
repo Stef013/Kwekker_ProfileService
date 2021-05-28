@@ -27,8 +27,8 @@ namespace Profile_Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContextPool<ProfileDbContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContextPool<ProfileDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddControllers();
         }
