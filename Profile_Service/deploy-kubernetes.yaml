@@ -1,0 +1,29 @@
+#?filename=deploy-kubernetes.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kwekkerprofileservice
+spec:
+  selector:
+    matchLabels:
+      app: kwekkerprofileservice
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kwekkerprofileservice
+    spec:
+      containers:
+        - name: kwekkerprofileservice
+          image: stefv013/kwekker_profile
+          imagePullPolicy: Always
+          ports:
+            - name: listen-port
+              containerPort: 8082
+          resources:
+            requests:
+              cpu: 10m
+              memory: 128Mi
+            limits:
+              cpu: 1
+              memory: 256Mi
