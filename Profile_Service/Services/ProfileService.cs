@@ -142,6 +142,23 @@ namespace Profile_Service.Services
             }
         }
 
+        public List<Profile> getProfiles(int profileID)
+        {
+            List<Profile> profiles = new List<Profile>();
+            try
+            {
+                profiles = _context.Profiles.Where(p => p.ID != profileID).ToList();
+
+                return profiles;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return profiles;
+            }
+        }
+
+
         public Profile getByProfileName(string profileName)
         {
             Profile profile;

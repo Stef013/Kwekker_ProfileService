@@ -74,6 +74,12 @@ namespace Profile_Service.Controllers
             return profileService.checkUserTag(usertag);
         }
 
+        [HttpGet("profiles")]
+        public List<Profile> getByProfiles(int profileID)
+        {
+            return profileService.getProfiles(profileID);
+        }
+
         [HttpPut]
         public bool update([FromBody] Profile profile)
         {
